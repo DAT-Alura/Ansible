@@ -51,3 +51,80 @@ Esse comando irá funcionar?
 > ```ansible wordpress -u vagrant --private-key .vagrant/machines/wordpress/virtualbox/private_key -i hosts -m shell -a 'echo Hello, World'```
 
 - Não, pois o IP da máquina não foi passado para o comando.
+
+## Aula 2
+
+1 - A Ana quer criar um Playbook que gere um arquivo txt com o seu nome dentro do arquivo /vagrant/nome.txt. A tarefa deve funcionar para todos os hosts configurados. Como deverá ficar esse Playbook?
+
+- __A__
+
+``` yml
+---
+- hosts: all
+  tasks:
+    - shell: "echo Ana > /vagrant/nome.txt"
+```
+
+> Alternativa correta! A primeira linha do Playbook são três hífens, o primeiro elemento são os hosts que o Ansible vai trabalhar e após isso são escritos os comandos a serem executados, que são uma lista de tasks. Para escrever o nome em um arquivo, utilizamos o módulo shell, executando o comando echo em seguida.
+
+- B
+
+``` yml
+- hosts: all
+  tasks:
+    - shell: "echo Ana > /vagrant/nome.txt"
+```
+
+- C
+
+``` yml
+---
+- hosts: all
+    - shell: "echo Ana > /vagrant/nome.txt"
+```
+
+- D
+
+``` yml
+- hosts: all
+  tasks:
+    - echo: "Frederico > /vagrant/nome.txt"
+```
+
+2 - Tendo como referência o Playbook abaixo, podemos dizer:
+
+``` yml
+---
+- hosts: all
+    - name: 'Instala o PHP5'
+        name: php5
+        state: latest
+      become: yes
+```
+
+- O arquivo possui 3 erros.
+- O arquivo possui 1 erro.
+- O arquivo está correto.
+- __O arquivo possui 2 erros.__
+
+> Alternativa correta! O arquivo possui 2 erros: faltou colocar a dependência na lista de tasks e declarar o módulo a ser utilizado, o apt. O arquivo correto seria:
+>
+> ``` yml
+> ---
+> - hosts: all
+>   tasks:
+>     - name: 'Instala o PHP5'
+>       apt:
+>         name: php5
+>         state: latest
+>       become: yes
+> ```
+
+3 - Abaixo estão algumas palavras-chave do Ansible e os seus usos. Mas há um uso incorreto, qual?
+
+- hosts: Indica para qual grupo ou host do arquivo de inventário o Ansible vai aplicar as tarefas.
+- __become: É um booleano e indica se a task será executada antes das outras tasks.__
+
+> Alternativa correta! O uso do become está incorreto, pois ele é um booleano e indica se a task será executada com ou sem privilégios administrativos.
+
+- tasks: Lista principal de comandos a serem executados nos hosts selecionados.
