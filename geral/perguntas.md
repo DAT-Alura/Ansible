@@ -128,3 +128,31 @@ Esse comando irá funcionar?
 > Alternativa correta! O uso do become está incorreto, pois ele é um booleano e indica se a task será executada com ou sem privilégios administrativos.
 
 - tasks: Lista principal de comandos a serem executados nos hosts selecionados.
+
+## Aula 3
+
+1 - Temos as seguintes afirmativas sobre with_items:
+
+A) O parâmetro with_items fica no nível da task, ou seja, não faz parte da task.
+
+B) Em with_items, passamos o nome (name) dos pacotes das tasks que desejamos que ele contenha.
+
+C) Acabamos escrevendo mais com with_items.
+
+Podemos afirmar que:
+
+- __Apenas as afirmativas A e B são verdadeiras__
+
+> Alternativa correta! A afirmativa C é falsa, pois acabamos escrevendo menos com with_items.
+
+- Apenas as afirmativas B e C são verdadeiras
+- Apenas as afirmativas A e C são verdadeiras
+
+2 - No último vídeo aprendemos sobre a variável especial item. Qual das afirmações abaixo é verdadeira?
+
+- __Ela é uma palavra reservada do Ansible e com ela conseguimos fazer uma referência a todos os elementos inclusos em uma lista.__
+
+> Alternativa correta! Ela é uma palavra reservada do Ansible e serve para fazer uma referência aos objetos inclusos na nossa lista de dependências.
+
+- Não tem utilidade real, já que é muito mais fácil utilizar diversas tasks diferentes.
+- Ela é meramente semântica e com ela conseguimos fazer uma referência a um o elemento de uma lista.
