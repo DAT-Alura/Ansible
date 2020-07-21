@@ -156,3 +156,78 @@ Podemos afirmar que:
 
 - Não tem utilidade real, já que é muito mais fácil utilizar diversas tasks diferentes.
 - Ela é meramente semântica e com ela conseguimos fazer uma referência a um o elemento de uma lista.
+
+## Aula 4
+
+1 - Aprendemos no último vídeo como podemos usar o Ansible para criar e deletar bancos de dados. Qual das opções abaixo realiza a opção de criação de uma base de dados MySQL chamada bancoteste?
+
+- A
+
+``` yml
+- name: 'Cria o banco do MySQL'
+  mysql_db:
+    name: bancoteste
+    login_user: root
+    state: create
+```
+
+- B
+
+``` yml
+- name: 'Cria o banco do MySQL'
+  mysql_db:
+    name: bancoteste
+    login_user: root
+    state: new
+```
+
+- __C__
+
+``` yml
+- name: 'Cria o banco do MySQL'
+  mysql_db:
+    name: bancoteste
+    login_user: root
+    state: present
+```
+
+> Alternativa correta! Com essa sintaxe e com o state present, a base de dados MySQL bancoteste é criada.
+
+- D
+
+``` yml
+- name: 'Cria o banco do MySQL'
+  mysql_db:
+    name: bancoteste
+    login_user: root
+    state: absent
+```
+
+2 - O usuário do MySQL também possui alguns privilégios, que são configurados no parâmetro priv. Como seria a permissão para o usuário poder fazer todas as operações comuns em todas as tabelas da base de dados alura_ansible?
+
+- priv: '*.*:ALL'
+- __priv: 'alura_ansible.*:ALL'__
+
+> Alternativa correta! O formato da string de privilégio é: base_de_dados.tabela:privilegio. A base de dados é alura_ansible, as tabelas são todas (logo, utiliza-se *) e para o usuário poder fazer todas as operações comuns no banco de dados, usa-se ALL.
+
+- priv: 'ALL.*:alura_ansible'
+
+3 - Tendo como referência a task abaixo de criação de um usuário do MySQL, podemos dizer:
+
+``` yml
+- name: 'Cria o usuário do MySQL'
+  mysql_user:
+    login: root
+    alias: wordpress_user
+    pass: 12345
+    priv: 'wordpress_db.*:ALL'
+    state: present
+```
+
+- Ela possui 1 erro.
+- Ela está correta.
+- __Ela possui 3 erros.__
+
+> Alternativa correta! A task possui 3 erros: o usuário que será utilizado para fazer a autenticação não é passado no parâmetro login, e sim no parâmetro login_user; o usuário a ser criado não é passado no parâmetro alias, e sim no parâmetro name; e por fim, a senha do usuário não é passada no parâmetro pass, e sim no parâmetro password. O três parâmetros incorretos sequer existem.
+
+- Ela possui 2 erros.

@@ -1,0 +1,30 @@
+---
+- hosts: all
+  tasks:
+    - name: "Instala pacotes de dependencias do sistema operacional"
+      apt:
+        name: "{{ item }}"
+        state: latest
+      become: yes
+      with_items:
+        - php5
+        - apache2
+        - libapache2-mod-php5
+        - php5-gd
+        - libssh2-php
+        - php5-mcrypt
+        - mysql-server-5.6
+        - python-mysqldb
+        - php5-mysql
+    - name: "Cria o banco MySQL"
+      mysql_db:
+        login_user: root
+        name: wordpress_db
+        state: present
+    - name: "Cria o usuário do MySQL"
+      mysql_user:
+        login_user: root
+        name: wordpress_user
+        password: 123456789
+        priv: "wordpress_db.*:ALL"
+        state: present
