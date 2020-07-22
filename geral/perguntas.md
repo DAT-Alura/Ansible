@@ -298,3 +298,144 @@ handlers:
 > ```
 
 - Ele está correto.
+
+## Aula 6
+
+1 - Segue uma parte do provisioning.yml com a configuração do handler que reinicia o Apache2:
+
+``` yml
+- hosts: wordpress
+  handlers:
+    - name: restart apache
+      service:
+        name: apache2
+        state: restarted
+      become: yes
+...
+```
+
+Como garantimos que esse handler realmente será chamado após execução de uma tarefa?
+
+- Handlers serão chamados automaticamente após a execução das tasks.
+
+- __No final da task, usando:__
+
+``` yml
+notify:
+  - restart apache
+```
+
+> Alternativa correta! Através do notify podemos "avisar" o handler.
+
+- Criando uma task específica:
+
+``` yml
+tasks:
+  - name: restart apache
+```
+
+2 - O Ansible nos permite executar comandos contra uma lista arbitrária de hosts remotos através do arquivo de inventário, que podem estar divididos em diferentes grupos. Dito isso, dado o arquivo de inventário abaixo, qual seria o retorno do comando ```ansible groupA -i hosts -m ping```?
+
+``` txt
+[groupA]
+10.0.0.1
+10.0.0.2
+
+[groupB]
+10.0.0.3
+10.0.0.4
+
+[groupC]
+10.0.0.5
+10.0.0.6
+```
+
+- A
+
+``` yml
+10.0.0.1 | SUCCESS => {
+    "changed": false,
+    "failed": false,
+    "ping": "pong"
+}
+10.0.0.2 | SUCCESS => {
+    "changed": false,
+    "failed": false,
+    "ping": "pong"
+}
+10.0.0.3 | SUCCESS => {
+    "changed": false,
+    "failed": false,
+    "ping": "pong"
+}
+10.0.0.4 | SUCCESS => {
+    "changed": false,
+    "failed": false,
+    "ping": "pong"
+}
+10.0.0.5 | SUCCESS => {
+    "changed": false,
+    "failed": false,
+    "ping": "pong"
+}
+10.0.0.6 | SUCCESS => {
+    "changed": false,
+    "failed": false,
+    "ping": "pong"
+}
+```
+
+- B
+
+``` yml
+10.0.0.3 | SUCCESS => {
+    "changed": false,
+    "failed": false,
+    "ping": "pong"
+}
+10.0.0.4 | SUCCESS => {
+    "changed": false,
+    "failed": false,
+    "ping": "pong"
+}
+10.0.0.5 | SUCCESS => {
+    "changed": false,
+    "failed": false,
+    "ping": "pong"
+}
+10.0.0.6 | SUCCESS => {
+    "changed": false,
+    "failed": false,
+    "ping": "pong"
+}
+```
+
+- __C__
+
+``` yml
+10.0.0.1 | SUCCESS => {
+    "changed": false,
+    "failed": false,
+    "ping": "pong"
+}
+
+10.0.0.2 | SUCCESS => {
+    "changed": false,
+    "failed": false,
+    "ping": "pong"
+}
+```
+
+> Alternativa correta! O comando informado recebeu os seguintes parâmetros : ```<grupo> -i <inventário> -m <módulo>```.
+> O grupo informado foi o groupA, que de acordo com o arquivo de inventário fornecido é formado pelos hosts 10.0.0.1 e 10.0.0.2. Dessa forma, quando rodamos o comando ansible informando o grupo groupA, o módulo solicitado será executado apenas contra os hosts desse grupo.
+> Para maiores detalhes, você pode ler a documentação [aqui](https://docs.ansible.com/ansible/2.4/intro_patterns.html).
+
+- D
+
+``` yml
+localhost | SUCCESS => {
+    "changed": false,
+    "failed": false,
+    "ping": "pong"
+}
+```
