@@ -427,7 +427,7 @@ tasks:
 ```
 
 > Alternativa correta! O comando informado recebeu os seguintes parâmetros : ```<grupo> -i <inventário> -m <módulo>```.
-> O grupo informado foi o groupA, que de acordo com o arquivo de inventário fornecido é formado pelos hosts 10.0.0.1 e 10.0.0.2. Dessa forma, quando rodamos o comando ansible informando o grupo groupA, o módulo solicitado será executado apenas contra os hosts desse grupo.
+> O grupo informado foi o __groupA__, que de acordo com o arquivo de inventário fornecido é formado pelos hosts 10.0.0.1 e 10.0.0.2. Dessa forma, quando rodamos o comando __ansible__ informando o grupo __groupA__, o módulo solicitado será executado apenas contra os hosts desse grupo.
 > Para maiores detalhes, você pode ler a documentação [aqui](https://docs.ansible.com/ansible/2.4/intro_patterns.html).
 
 - D
