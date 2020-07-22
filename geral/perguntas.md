@@ -478,3 +478,33 @@ Baseado nisso, quais das afirmações abaixo são verdadeiras?
 > Para ser válido em todos os grupos, o arquivo precisa se chamar all.yml.
 
 - Essa variável serve apenas para templates.
+
+## Aula 8
+
+1 - Vimos na aula que os roles representam uma forma de encapsular tarefas, variáveis e handlers para facilitar o reuso.
+
+Sabendo disso, qual é a estrutura mínima para definir uma tarefa de instalação no role server?
+
+- __Usando o main.yml, dentro do diretório roles/server/tasks/ e dentro deste arquivo fica a task de instalação.__
+
+> Alternativa correta! Dentro do diretório roles/server/tasks/*, criamos o arquivo main.yml* e dentro dele fica a task* de instalação.
+
+- Usando o task.yml, dentro do diretório roles/server/ e dentro deste arquivo fica a task de instalação.
+- Usando o server.yml, dentro do diretório roles/tasks/ e dentro deste arquivo fica a task de instalação.
+
+2 - Já avançamos bastante no nosso projeto e declaramos as nossas roles.
+
+Sobre as roles, marque todas as declarações verdadeiras:
+
+- __As dependências são declaradas no arquivo meta/main.yml.__
+
+> Correto! No arquivo meta/main.yml nós declaramos as dependências.
+
+- __As tasks são declaradas no arquivo tasks/main.yml.__
+
+> Correto! No arquivo tasks/main.yml nós declaramos as tasks.
+
+- Os handlers são declarados no arquivo handlers.yml.
+- __As variáveis são declaradas no arquivo defaults/main.yml.__
+
+> Correto! No arquivo defaults/main.yml nós declaramos as variáveis.
