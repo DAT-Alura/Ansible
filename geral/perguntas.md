@@ -439,3 +439,42 @@ localhost | SUCCESS => {
     "ping": "pong"
 }
 ```
+
+## Aula 7
+
+1 - Sobre declaração de variáveis, temos as seguintes afirmativas:
+
+A) Utilizamos variáveis declaradas através de '{{ nome_da_variavel }}'.
+
+B) Não há limite no número de variáveis declaradas.
+
+C) Uma variável só pode ser definida na linha de comando.
+
+Podemos dizer que:
+
+- Apenas a afirmativa B é falsa.
+- __As afirmativas A e C são falsas.__
+
+> Alternativa correta! As variáveis também podem ser definidas em arquivos, e são utilizadas através de "{{ nome_da_variavel }}", com aspas duplas.
+
+- Apenas a afirmativa C é falsa.
+
+2 - Aprendemos sobre templates nesta aula. Das afirmações abaixo, qual a correta?
+
+- O Ansible é usado por templates para gerar arquivos de resultado.
+- Os templates só podem fazer uso de constantes.
+- __Os templates são manipulados por um módulo de mesmo nome, template.__
+
+3 - Você pegou um projeto Ansible do colega de trabalho e começou a analisar a estrutura. No projeto, dentro da pasta group_vars tem o arquivo server.yml, com a declaração da variável:
+
+```server_ip: '172.17.177.40'```
+
+Baseado nisso, quais das afirmações abaixo são verdadeiras?
+
+- Essa variável deve ser utilizada na linha de comando, ao executar o Ansible
+- __Essa variável é válida para o grupo server.__
+
+> Alternativa correta! Repare que o arquivo se chama server.yml, ou seja, é válida para o grupo server.
+> Para ser válido em todos os grupos, o arquivo precisa se chamar all.yml.
+
+- Essa variável serve apenas para templates.
