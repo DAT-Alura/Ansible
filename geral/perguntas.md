@@ -231,3 +231,70 @@ Podemos afirmar que:
 > Alternativa correta! A task possui 3 erros: o usuário que será utilizado para fazer a autenticação não é passado no parâmetro login, e sim no parâmetro login_user; o usuário a ser criado não é passado no parâmetro alias, e sim no parâmetro name; e por fim, a senha do usuário não é passada no parâmetro pass, e sim no parâmetro password. O três parâmetros incorretos sequer existem.
 
 - Ela possui 2 erros.
+
+## Aula 5
+
+1 - Temos o seguinte código:
+
+``` yml
+- name: 'x'
+  get_url:
+    url: 'https://endereco.com/x.zip'
+    dest: '/tmp/y.zip'
+```
+
+Podemos afirmar que:
+
+- __O Ansible baixará o arquivo da URL definida na propriedade url, gravando-o na pasta indicada na propriedade dest, com o nome que definirmos.__
+
+> Alternativa correta! Na propriedade ```url```, é definida a URL que o Ansible utilizará para baixar o arquivo, que será gravado na pasta indicada na propriedade ```dest```, com o nome que definirmos.
+
+- É um código inválido.
+- O Ansible baixará o arquivo da URL definida na propriedade url, gravando-o na pasta indicada na propriedade dest, com o mesmo nome do arquivo baixado.
+
+2 - Temos o seguinte trecho de código do Playbook:
+
+``` yml
+- copy:
+    src: '/var/www/wordpress/wp-config-sample.php'
+    dist: '/var/www/wordpress/wp-config.php'
+    remote_src: yes
+  become: yes
+```
+
+Quantos erros há no trecho de código acima?
+
+- Nenhum erro
+- __1 erro__
+
+> Alternativa correta! Há apenas um erro: a propriedade não é dist, é dest.
+
+- 3 erros
+- 2 erros
+
+3 - Tendo como referência o handler abaixo para reiniciar o Apache2, podemos dizer:
+
+``` yml
+handlers:
+  - name: restart apache
+      name: apache2
+      state: restarted
+    become: yes
+```
+
+- Ele possui 3 erros.
+- Ele possui 2 erros.
+- __Ele possui 1 erro.__
+
+> Alternativa correta! Ele possui um erro: faltou a declaração do serviço, através de service. O correto seria:
+>
+> ``` yml
+> handlers:
+>   - name: restart apache
+>    service:
+>       name: apache2
+>       state: restarted
+>     become: yes
+> ```
+
+- Ele está correto.
